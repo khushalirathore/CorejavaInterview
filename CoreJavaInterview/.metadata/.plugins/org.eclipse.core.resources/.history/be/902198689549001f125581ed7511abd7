@@ -1,0 +1,13 @@
+package com.rays.Comparable;
+
+public class Stud {
+
+	public int id;
+	public int rollNo;
+
+	public Stud(int id, int rollNo) {
+		this.id = id;
+		this.rollNo = rollNo;
+	}
+
+}

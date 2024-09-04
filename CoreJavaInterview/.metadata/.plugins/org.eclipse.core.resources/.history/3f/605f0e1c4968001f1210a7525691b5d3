@@ -1,0 +1,38 @@
+package com.rays.udp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class UDPClient1 {
+
+    public static void main(String[] args) throws IOException {
+
+        // Start UDP Socket (client side)
+        DatagramSocket socket = new DatagramSocket();
+
+        // Buffer to send a request (can be empty as the server only responds)
+        byte[] buf = new byte[256];
+
+        // Server's IP address and port number
+        InetAddress address = InetAddress.getByName("127.0.0.1");
+        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445);
+
+        // Send packet to the server
+        socket.send(packet);
+
+        // Buffer to receive the response from the server
+        packet = new DatagramPacket(buf, buf.length);
+
+        // Wait for the response from the server
+        socket.receive(packet);
+
+        // Convert the response to a string and print it
+        String received = new String(packet.getData(), 0, packet.getLength());
+        System.out.println("Quote of the Moment: " + received);
+
+        // Close socket
+        socket.close();
+    }
+}

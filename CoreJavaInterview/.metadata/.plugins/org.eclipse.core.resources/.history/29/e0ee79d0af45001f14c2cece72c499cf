@@ -1,0 +1,32 @@
+package com.rays.queue;
+
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class QueueInterfaceExmple {
+	public static void main(String[] args) {
+
+		Queue q = new LinkedList();
+
+		q.offer("a");
+		q.offer(4);
+		q.offer("a");
+		q.offer(4);
+
+		System.out.println(q);
+
+		System.out.println(q.offer(2));
+		System.out.println(q);
+
+		System.out.println(q.peek());
+		System.out.println(q);
+
+		System.out.println(q.remove());
+		System.out.println(q);
+
+		System.out.println(q.element());
+		System.out.println(q);
+	}
+
+}

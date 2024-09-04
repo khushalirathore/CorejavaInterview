@@ -1,0 +1,11 @@
+package com.rays.abc;
+
+import java.net.URL;
+
+public class URlExample {
+	
+	public static void main(String[] args) {
+		URL u = new URL("https://github.com/namanmeena05")
+	}
+
+}

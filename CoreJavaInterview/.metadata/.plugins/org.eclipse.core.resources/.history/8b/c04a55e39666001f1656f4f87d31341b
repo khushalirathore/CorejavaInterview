@@ -1,0 +1,58 @@
+package com.rays.networking;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class MultiThreadedEcoServer extends Thread {
+
+	private Socket client = null;
+
+	public MultiThreadedEcoServer(Socket clientSocket) {
+		this.client = clientSocket;
+	}
+
+	@Override
+	public void run() {
+		try {
+			PrintWriter pw = new PrintWriter(client.getOutputStream(), true);
+			BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			String inputLine;
+			inputLine = br.readLine();
+			while (inputLine != null) {
+
+				pw.println(inputLine + ".." + inputLine);
+				if (inputLine.equals("Bye.")) {
+					break;
+				}
+				inputLine = br.readLine();
+			}
+			pw.close();
+			br.close();
+			client.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) throws Exception {
+
+		ServerSocket serverSocket = null;
+		MultiThreadedEcoServer multiThreadEchoServer = null;
+		serverSocket = new ServerSocket(5643);
+
+		Socket clientSocket = null;
+		boolean flag = true;
+		while (flag) {
+			clientSocket = serverSocket.accept();
+			multiThreadEchoServer = new MultiThreadedEcoServer(clientSocket);
+			multiThreadEchoServer.start();
+		}
+		System.out.println("Echo Server Stoped");
+		serverSocket.close();
+	}
+
+}

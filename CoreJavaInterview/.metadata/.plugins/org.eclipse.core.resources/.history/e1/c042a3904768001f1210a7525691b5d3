@@ -1,0 +1,44 @@
+package com.rays.udp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.util.Random;
+
+public class UDPServer1 {
+
+    public static void main(String[] args) throws IOException {
+
+        // Array of quotes
+        String[] arr = { "Bura Mat Dekho", "Bura Mat Kaho", "Bura Mat Suno" };
+
+        // Start UDP Socket on port 4445
+        DatagramSocket socket = new DatagramSocket(4445);
+
+        // Buffer to receive incoming data
+        byte[] buf = new byte[256];
+
+        // Create an empty packet to receive client data
+        DatagramPacket packet = new DatagramPacket(buf, buf.length);
+
+        // Wait for a packet from the client
+        socket.receive(packet);
+
+        // Pick a random quote
+        String str = arr[new Random().nextInt(arr.length)];
+
+        // Get client's IP address and port number from the received packet
+        InetAddress clientAddress = packet.getAddress();
+        int clientPort = packet.getPort();
+
+        // Convert quote to bytes and send it back to the client
+        byte[] responseData = str.getBytes();
+        DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length, clientAddress, clientPort);
+
+        socket.send(responsePacket);
+
+        // Close socket
+        socket.close();
+    }
+}

@@ -1,0 +1,27 @@
+package com.rays.first;
+
+public class abc {
+
+	public static void main(String[] args) {
+		String[] name = { "abc", "cde" };
+		// int count = 0;
+		int[] count = new int[26];
+
+		for (String s : name) {
+
+			for (char a = 'a'; a <= 'z'; a++) {
+				for (int i = 0; i < s.length(); i++) {
+					if (a == s.charAt(i)) {
+						count[a=='a']++;
+
+					}
+				}
+
+				if (count != 0) {
+					System.out.print(a + " " + count + ",");
+					count = 0;
+				}
+			}
+		}
+	}
+}

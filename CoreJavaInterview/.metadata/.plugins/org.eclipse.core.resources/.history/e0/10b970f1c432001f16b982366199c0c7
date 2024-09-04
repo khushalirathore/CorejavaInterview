@@ -1,0 +1,21 @@
+package com.rays.DeepCloning;
+
+public class TestDeepCloning {
+	public static void main(String[] args) throws CloneNotSupportedException {
+		Account1 acc = new Account1(100);
+
+		Costumber c1 = new Costumber("khushali", acc);
+		Costumber c2 = (Costumber) c1;
+
+		c2.name = "xyz";
+		c2.account1.balance = 200;
+
+		System.out.println(c1.name);
+		System.out.println(c1.account1.balance);
+
+		System.out.println(c2.name);
+		System.out.println(c2.account1.balance);
+
+	}
+
+}

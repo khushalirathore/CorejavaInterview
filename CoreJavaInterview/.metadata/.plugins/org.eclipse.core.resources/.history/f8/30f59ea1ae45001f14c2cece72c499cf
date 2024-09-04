@@ -1,0 +1,16 @@
+package com.rays.queue;
+
+import java.util.PriorityQueue;
+
+public class ATest {
+	
+	public static void main(String[] args) {
+		PriorityQueue q = new PriorityQueue();
+		
+		q.offer(1);
+		q.offer(4);
+		q.offer(3);
+		q.offer(2)
+	}
+
+}

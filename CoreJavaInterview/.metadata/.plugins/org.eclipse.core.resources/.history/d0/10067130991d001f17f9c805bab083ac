@@ -1,0 +1,49 @@
+package com.rays.first;
+
+public class abc {
+	
+	
+	  public static void main(String[] args) {
+	        String[] name = { "abc", "cde" };
+	        int[] count = new int[26]; // Array to hold counts for 'a' to 'z'
+
+	        for (String s : name) {
+	            for (char a = 'a'; a <= 'z'; a++) {
+	                for (int i = 0; i < s.length(); i++) {
+	                    if (a == s.charAt(i)) {
+	                        count[a - 'a']++;
+	                    }
+	                }
+	            }
+	        }
+
+	        for (char a = 'a'; a <= 'z'; a++) {
+	            if (count[a - 'a'] != 0) {
+	                System.out.println(a + " " + count[a - 'a']);
+	            }
+	        }
+	    }
+	}
+
+//	public static void main(String[] args) {
+//		String[] name = { "abc", "cde" };
+//		int count = 0;
+//
+//		for (String s : name) {
+//		
+//			for (char a = 'a'; a <= 'z'; a++) {
+//				for (int i = 0; i < s.length(); i++) {
+//					if (a == s.charAt(i)) {
+//						count++;
+//					
+//					}
+//				}
+//
+//				if (count != 0) {
+//					System.out.println(a + " " + count);
+//					count = 0;
+//				}
+//			}
+//		}
+//	}
+//}

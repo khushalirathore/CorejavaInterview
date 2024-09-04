@@ -1,0 +1,31 @@
+package com.rays.udp;
+
+public class UDPServer1 {
+
+	public static void main(String[] args) throws Exception {
+
+		String[] quotes = { "Bura Mat Dekho", "Bura Mat Kaho", "Bura Mat Suno" };
+
+		DatagramSocket socket = new DatagramSocket(4445);
+
+		byte[] buf = new byte[256];
+
+		InetAddress address = InetAddress.getByName("127.0.0.1");
+
+		DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 5555);
+
+		socket.send(packet);
+
+		packet = new DatagramPacket(buf, buf.length);
+
+		socket.receive(packet);
+
+		String received = new String(packet.getData());
+
+		System.out.println("Quote of the Moment: " + received);
+
+		socket.close();
+
+	}
+
+}

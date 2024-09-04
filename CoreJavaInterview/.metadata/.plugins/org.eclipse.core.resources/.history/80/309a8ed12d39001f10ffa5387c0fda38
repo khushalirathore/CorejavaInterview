@@ -1,0 +1,18 @@
+package com.rays.constructorcalling;
+
+public class khush {
+	
+	public khush() {
+		System.out.println("this is defoult constoctor");
+	}
+	
+	public khush(int id ) {
+		System.out.println("this is defoult constoctor");
+	}
+	
+	public khush() {
+		System.out.println("this is defoult constoctor");
+	}
+	
+
+}

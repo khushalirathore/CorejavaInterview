@@ -1,0 +1,44 @@
+package com.rays.udp;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class UDPServer1 {
+
+	  public static void main(String[] args) throws IOException {
+
+	        // Start UDP Socket on a specific port to listen
+	        DatagramSocket socket = new DatagramSocket(4445);
+
+	        // Create a byte buffer
+	        byte[] buffer = new byte[256];
+
+	        // Create an empty data packet to receive client's packet
+	        DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
+
+	        // Wait for a packet and receive
+	        socket.receive(packet);
+
+	        // Extract the data received from the packet
+	        String received = new String(packet.getData(), 0, packet.getLength());
+	        System.out.println("Received: " + received);
+
+	        // Create a response message
+	        String response = "Hello from Server!";
+	        byte[] responseData = response.getBytes();
+
+	        // Get the client's IP address and port from the received packet
+	        InetAddress clientAddress = packet.getAddress();
+	        int clientPort = packet.getPort();
+
+	        // Create a response packet to send back to the client
+	        DatagramPacket responsePacket = new DatagramPacket(responseData, responseData.length, clientAddress, clientPort);
+
+	        // Send response packet
+	        socket.send(responsePacket);
+
+	        // Close Socket
+	        socket.close();
+	    }
+	}

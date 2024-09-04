@@ -1,0 +1,32 @@
+package com.rays.Comparable;
+
+public class Stud implements Comparable<Stud> {
+
+	public int id;
+	public int rollNo;
+
+	public Stud(int id, int rollNo) {
+		this.id = id;
+		this.rollNo = rollNo;
+	}
+	
+	public int compareTo(Stud o) {
+
+		if (id == o.id) {
+
+			return name.compareTo(o.name);
+
+		} else if (name.equals(o.name)) {
+
+			return Integer.compare(marks, o.marks);
+
+		}
+		return name.compareTo(o.name);
+	}
+
+	@Override
+	public String toString() {
+		return  rollNo + ", name=" + name + ", marks=" + marks  ;
+	}
+
+}
